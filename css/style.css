@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #003366;
+    font-family: 'Roboto', sans-serif;
+    color: #ffffff;
+}
+
+nav {
+    width: 100%;
+    height: 10vh;
+    background-color: #11111161;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.logo {
+    height: 40px;
+    width: auto;
+}
+
+.titulo {
+    font-size: 28px;
+}
+
+#usuario {
+    height: 40px;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.fotoUsuario {
+    height: 50px;
+    width: auto;
+    border-radius: 50%;
+}
+
+.datosUsuario {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+}
+
+main {
+    height: 90vh;
+    display: flex;
+}
+
+.menu {
+    width: 15%;
+    background-color: #6c6c6c;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    padding: 30px 0;
+}
+
+.botonMenu {
+    padding: 8px 16px;
+    font-size: 12px;
+    background-color: #11111161;
+    border-radius: 8px;
+    color: #ffffff;
+}
+
+.contenedor {
+    width: 85%;
+}
+
+.tarjetaAlumno {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    gap: 20px;
+}
+
+.tarjetaAlumno p {
+    width: 100px;
+}
