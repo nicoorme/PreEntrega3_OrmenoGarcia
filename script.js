@@ -212,15 +212,15 @@ function listaAlumnos() {
 
         tarjetaAlumno.classList.add('tarjetaAlumno');
         tarjetaAlumno.innerHTML = `
-            <p>${alumno.legajo}</p>
-            <p>${alumno.nombre}</p>
-            <p>${alumno.apellido}</p>
-            <p>${alumno.tp1}</p>
-            <p>${alumno.tp2}</p>
-            <p>${alumno.tp3}</p>
-            <p>${alumno.tp4}</p>
-            <p>${alumno.primerParcial}</p>
-            <p>${alumno.segundoParcial}</p>
+            <p class = 'p1'>${alumno.legajo}</p>
+            <p class = 'p2'>${alumno.nombre}</p>
+            <p class = 'p3'>${alumno.apellido}</p>
+            <p class = 'p4'>${alumno.tp1}</p>
+            <p class = 'p5'>${alumno.tp2}</p>
+            <p class = 'p6'>${alumno.tp3}</p>
+            <p class = 'p7'>${alumno.tp4}</p>
+            <p class = 'p8'>${alumno.primerParcial}</p>
+            <p class = 'p9'>${alumno.segundoParcial}</p>
         `;
         contenedor.appendChild(tarjetaAlumno);
     });
