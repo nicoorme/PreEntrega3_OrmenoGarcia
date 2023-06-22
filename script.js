@@ -200,7 +200,7 @@ usuarios.forEach((usuario) => {
 });
 
 let contenedor = document.getElementById('contenedor');
-contenedor.innerHTML = 'HOLA';
+contenedor.innerHTML = '';
 
 let botonLista = document.getElementById('botonLista');
 botonLista.addEventListener('click', listaAlumnos);
