@@ -213,18 +213,21 @@ usuarios.forEach((usuario) => {
     }
 });
 
-let contenedor = document.getElementById('contenedor');
+//-------------------------------------------------------------------------
+//* INICIO CONTENEDOR
+
+let contenedorInfo = document.getElementById('contenedorInfo');
 inicio();
 
 function inicio() {
     usuarios.forEach((usuario) => {
         if (usuario.usuario.toLowerCase() === usuarioIngresado.toLowerCase()) {
             if (usuario.sexo == 'Femenino') {
-                contenedor.innerHTML = `
+                contenedorInfo.innerHTML = `
                 <h1 class="inicio">Bienvenida ${usuario.nombre}</h1>
                 `;
             } else {
-                contenedor.innerHTML = `
+                contenedorInfo.innerHTML = `
                 <h1 class="inicio">Bienvenido ${usuario.nombre}</h1>
                 `;
             }
@@ -232,18 +235,18 @@ function inicio() {
     });
 }
 
+let botonInicio = document.getElementById('botonInicio');
+botonInicio.addEventListener('click', inicio);
+
+//-------------------------------------------------------------------------
+//* LISTA ALUMNOS
+
 let botonLista = document.getElementById('botonLista');
 botonLista.addEventListener('click', () => listaAlumnos(alumnos));
 
 function listaAlumnos(array) {
-    contenedor.innerHTML = `
+    contenedorInfo.innerHTML = `
         <div class="contenedorLista">
-            <div class="filtros">
-                <input type="text" id="buscador">
-                <label><input id="filtroPromocion" type="checkbox">Promocion</label>
-                <label><input id="filtroRegular" type="checkbox">Regular</label>
-                <label><input id="filtroLibre" type="checkbox">Libre</label>
-            </div>
             <div id="linea1">
                 <h4 class = "cabecera">LEGAJO</h4>
                 <h4 class = "cabecera">NOMBRE</h4>
@@ -280,12 +283,33 @@ function listaAlumnos(array) {
     });
 }
 
+botonLista.addEventListener('click', mostrarOcultar);
+
+function mostrarOcultar() {
+    let contenedorFiltros = document.getElementById('barraFiltros');
+    //   let carrito = document.getElementById("carrito")
+    contenedorFiltros.classList.toggle('oculto');
+    //   carrito.classList.toggle("oculto")
+}
+
 let buscador = document.getElementById('buscador');
 buscador.addEventListener('input', () => filtrarYRenderizar(alumnos, buscador.value));
+
 function filtrarYRenderizar(arrayIngresado, input) {
     let alumnosFiltrados = arrayIngresado.filter((elemento) => elemento.nombre.toLowerCase().includes(input.toLowerCase()));
     listaAlumnos(alumnosFiltrados);
 }
+
+let filtroRegular = document.getElementById('filtroAlumnoRegular');
+filtroRegular.addEventListener('change', regular);
+
+function regular() {
+    let alumnosFiltrados = alumnos.filter((elemento) => elemento.estado === 'Regular');
+    listaAlumnos(alumnosFiltrados);
+}
+
+//------------------------------------------------------------------------------------
+//* CARGAR ALUMNO NUEVO
 
 let botonNuevoAlumno = document.getElementById('botonNuevoAlumno');
 let legajoNuevo = 1010;
@@ -296,13 +320,13 @@ let dni;
 botonNuevoAlumno.addEventListener('click', contenedorNuevosAlumnos);
 
 function contenedorNuevosAlumnos() {
-    contenedor.innerHTML = `
-    <div class="datosNuevoAlumno">
-        <input type="text" class="datoNuevoAlumno" id="nombreNuevoAlumno" placeholder="Ingrese nombre del alumno">
-        <input type="text" class="datoNuevoAlumno" id="apellidoNuevoAlumno" placeholder="Ingrese apellido del alumno">
-        <input type="number" class="datoNuevoAlumno" id="dniNuevoAlumno" placeholder="Ingrese DNI del alumno">
-        <button class="botonMenu" id="botonCargarNuevoAlumno">CARGAR</button>
-    </div>
+    contenedorInfo.innerHTML = `
+        <div class="datosNuevoAlumno">
+            <input type="text" class="datoNuevoAlumno" id="nombreNuevoAlumno" placeholder="Ingrese nombre del alumno">
+            <input type="text" class="datoNuevoAlumno" id="apellidoNuevoAlumno" placeholder="Ingrese apellido del alumno">
+            <input type="number" class="datoNuevoAlumno" id="dniNuevoAlumno" placeholder="Ingrese DNI del alumno">
+            <button class="botonMenu" id="botonCargarNuevoAlumno">CARGAR</button>
+        </div>
     `;
     let botonCargarNuevoAlumno = document.getElementById('botonCargarNuevoAlumno');
     botonCargarNuevoAlumno.addEventListener('click', nuevoAlumno);
@@ -322,9 +346,11 @@ function contenedorNuevosAlumnos() {
         legajoNuevo = legajo;
 
         alumnos.push({ legajo, nombre, apellido, dni, tp1, tp2, tp3, tp4, primerParcial, segundoParcial, estado });
-        listaAlumnos();
+        listaAlumnos(alumnos);
     }
 }
+
+//----------------------------------------------------------------------
 
 let botonCargarNotas = document.getElementById('botonCargarNotas');
 
@@ -380,6 +406,3 @@ function cargarNota() {
 
     listaAlumnos();
 }
-
-let botonInicio = document.getElementById('botonInicio');
-botonInicio.addEventListener('click', inicio);
