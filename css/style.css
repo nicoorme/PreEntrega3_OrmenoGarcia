@@ -188,10 +188,20 @@ main {
     gap: 20px;
 }
 
-.datoNuevoAlumno {
-    width: 80%;
+.input {
+    width: 300px;
     height: 30px;
 }
+
+.botonCargar {
+    width: 250px;
+    padding: 8px 16px;
+    font-size: 12px;
+    background-color: #11111161;
+    border-radius: 8px;
+    color: #ffffff;
+}
+
 .oculto {
     display: none;
 }
