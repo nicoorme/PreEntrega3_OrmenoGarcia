@@ -472,21 +472,15 @@ function cargarNota() {
     } else {
         condicionTP = 0;
     }
-    console.log(condicionTP);
-    if (condicionTP == 1 && alumnoNotas.primerParcial >= 7 && alumnoNotas.segundoParcial >= 7) {
+
+    if (alumnoNotas.primerParcial >= 7 && alumnoNotas.segundoParcial >= 7) {
         alumnoNotas.estado = 'APROBADO';
     } else if (condicionTP == 2 && alumnoNotas.primerParcial >= 5 && alumnoNotas.segundoParcial >= 5) {
         alumnoNotas.estado = 'APROBADO';
-    } else if (
-        condicionTP != 2 &&
-        alumnoNotas.primerParcial >= 5 &&
-        alumnoNotas.primerParcial < 7 &&
-        alumnoNotas.segundoParcial >= 5 &&
-        alumnoNotas.segundoParcial < 7
-    ) {
-        alumnoNotas.estado = 'REGULAR';
-    } else if (alumnoNotas.primerParcial < 5 || alumnoNotas.segundoParcial > 5) {
+    } else if (alumnoNotas.primerParcial < 5 || alumnoNotas.segundoParcial < 5) {
         alumnoNotas.estado = 'LIBRE';
+    } else {
+        alumnoNotas.estado = 'REGULAR';
     }
 
     listaAlumnos(alumnos);
