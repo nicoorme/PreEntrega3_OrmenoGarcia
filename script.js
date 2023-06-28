@@ -57,130 +57,130 @@ let alumnos = [
         nombre: 'Ana',
         apellido: 'Vivas',
         dni: 45234442,
-        primerParcial: null,
-        segundoParcial: null,
-        tp1: null,
-        tp2: null,
-        tp3: null,
-        tp4: null,
-        estado: null,
+        tp1: 'Sin datos',
+        tp2: 'Sin datos',
+        tp3: 'Sin datos',
+        tp4: 'Sin datos',
+        primerParcial: 'Sin datos',
+        segundoParcial: 'Sin datos',
+        estado: 'Sin datos',
     },
     {
         legajo: 1002,
         nombre: 'Manuel',
         apellido: 'Ordoñez',
         dni: 42330393,
-        primerParcial: null,
-        segundoParcial: null,
-        tp1: null,
-        tp2: null,
-        tp3: null,
-        tp4: null,
-        estado: null,
+        tp1: 'Sin datos',
+        tp2: 'Sin datos',
+        tp3: 'Sin datos',
+        tp4: 'Sin datos',
+        primerParcial: 'Sin datos',
+        segundoParcial: 'Sin datos',
+        estado: 'Sin datos',
     },
     {
         legajo: 1003,
         nombre: 'Alejandro',
         apellido: 'Moran',
         dni: 43982710,
-        primerParcial: null,
-        segundoParcial: null,
-        tp1: null,
-        tp2: null,
-        tp3: null,
-        tp4: null,
-        estado: null,
+        tp1: 'Sin datos',
+        tp2: 'Sin datos',
+        tp3: 'Sin datos',
+        tp4: 'Sin datos',
+        primerParcial: 'Sin datos',
+        segundoParcial: 'Sin datos',
+        estado: 'Sin datos',
     },
     {
         legajo: 1004,
         nombre: 'Eugenio',
         apellido: 'Islas',
         dni: 44992692,
-        primerParcial: null,
-        segundoParcial: null,
-        tp1: null,
-        tp2: null,
-        tp3: null,
-        tp4: null,
-        estado: null,
+        tp1: 'Sin datos',
+        tp2: 'Sin datos',
+        tp3: 'Sin datos',
+        tp4: 'Sin datos',
+        primerParcial: 'Sin datos',
+        segundoParcial: 'Sin datos',
+        estado: 'Sin datos',
     },
     {
         legajo: 1005,
         nombre: 'Carla',
         apellido: 'Gomez',
         dni: 45927433,
-        primerParcial: null,
-        segundoParcial: null,
-        tp1: null,
-        tp2: null,
-        tp3: null,
-        tp4: null,
-        estado: null,
+        tp1: 'Sin datos',
+        tp2: 'Sin datos',
+        tp3: 'Sin datos',
+        tp4: 'Sin datos',
+        primerParcial: 'Sin datos',
+        segundoParcial: 'Sin datos',
+        estado: 'Sin datos',
     },
     {
         legajo: 1006,
         nombre: 'Natalia',
         apellido: 'Acosta',
         dni: 44229018,
-        primerParcial: null,
-        segundoParcial: null,
-        tp1: null,
-        tp2: null,
-        tp3: null,
-        tp4: null,
-        estado: null,
+        tp1: 'Sin datos',
+        tp2: 'Sin datos',
+        tp3: 'Sin datos',
+        tp4: 'Sin datos',
+        primerParcial: 'Sin datos',
+        segundoParcial: 'Sin datos',
+        estado: 'Sin datos',
     },
     {
         legajo: 1007,
         nombre: 'Federico',
         apellido: 'Rivas',
         dni: 43847993,
-        primerParcial: null,
-        segundoParcial: null,
-        tp1: null,
-        tp2: null,
-        tp3: null,
-        tp4: null,
-        estado: null,
+        tp1: 'Sin datos',
+        tp2: 'Sin datos',
+        tp3: 'Sin datos',
+        tp4: 'Sin datos',
+        primerParcial: 'Sin datos',
+        segundoParcial: 'Sin datos',
+        estado: 'Sin datos',
     },
     {
         legajo: 1008,
         nombre: 'Laura',
         apellido: 'Giordano',
         dni: 45929111,
-        primerParcial: null,
-        segundoParcial: null,
-        tp1: null,
-        tp2: null,
-        tp3: null,
-        tp4: null,
-        estado: null,
+        tp1: 'Sin datos',
+        tp2: 'Sin datos',
+        tp3: 'Sin datos',
+        tp4: 'Sin datos',
+        primerParcial: 'Sin datos',
+        segundoParcial: 'Sin datos',
+        estado: 'Sin datos',
     },
     {
         legajo: 1009,
         nombre: 'Micaela',
         apellido: 'Martinez',
         dni: 46301112,
-        primerParcial: null,
-        segundoParcial: null,
-        tp1: null,
-        tp2: null,
-        tp3: null,
-        tp4: null,
-        estado: null,
+        primerParcial: 'Sin datos',
+        segundoParcial: 'Sin datos',
+        tp1: 'Sin datos',
+        tp2: 'Sin datos',
+        tp3: 'Sin datos',
+        tp4: 'Sin datos',
+        estado: 'Sin datos',
     },
     {
         legajo: 1010,
         nombre: 'Joaquin',
         apellido: 'Garcia',
         dni: 46321234,
-        primerParcial: null,
-        segundoParcial: null,
-        tp1: null,
-        tp2: null,
-        tp3: null,
-        tp4: null,
-        estado: null,
+        tp1: 'Sin datos',
+        tp2: 'Sin datos',
+        tp3: 'Sin datos',
+        tp4: 'Sin datos',
+        primerParcial: 'Sin datos',
+        segundoParcial: 'Sin datos',
+        estado: 'Sin datos',
     },
 ];
 
@@ -287,27 +287,22 @@ botonLista.addEventListener('click', mostrarOcultar);
 
 function mostrarOcultar() {
     let contenedorFiltros = document.getElementById('barraFiltros');
-    //   let carrito = document.getElementById("carrito")
+    contenedorFiltros.classList.toggle('mostrar');
     contenedorFiltros.classList.toggle('oculto');
-    //   carrito.classList.toggle("oculto")
 }
 
 let buscador = document.getElementById('buscador');
 buscador.addEventListener('input', () => filtrarYRenderizar(alumnos, buscador.value));
 
 function filtrarYRenderizar(arrayIngresado, input) {
-    let alumnosFiltrados = arrayIngresado.filter((elemento) => elemento.nombre.toLowerCase().includes(input.toLowerCase()));
+    let alumnosFiltrados = arrayIngresado.filter(
+        (elemento) =>
+            elemento.nombre.toLowerCase().includes(input.toLowerCase()) ||
+            elemento.apellido.toLowerCase().includes(input.toLowerCase()) ||
+            elemento.estado.toLowerCase().includes(input.toLowerCase())
+    );
     listaAlumnos(alumnosFiltrados);
 }
-
-let filtroRegular = document.getElementById('filtroAlumnoRegular');
-filtroRegular.addEventListener('change', regular);
-
-function regular() {
-    let alumnosFiltrados = alumnos.filter((elemento) => elemento.estado === 'Regular');
-    listaAlumnos(alumnosFiltrados);
-}
-
 //------------------------------------------------------------------------------------
 //* CARGAR ALUMNO NUEVO
 
@@ -336,13 +331,13 @@ function contenedorNuevosAlumnos() {
         apellido = document.getElementById('apellidoNuevoAlumno').value;
         dni = document.getElementById('dniNuevoAlumno').value;
         let legajo = legajoNuevo + 1;
-        let tp1 = null;
-        let tp2 = null;
-        let tp3 = null;
-        let tp4 = null;
-        let primerParcial = null;
-        let segundoParcial = null;
-        let estado = null;
+        let tp1 = 'Sin datos';
+        let tp2 = 'Sin datos';
+        let tp3 = 'Sin datos';
+        let tp4 = 'Sin datos';
+        let primerParcial = 'Sin datos';
+        let segundoParcial = 'Sin datos';
+        let estado = 'Sin datos';
         legajoNuevo = legajo;
 
         alumnos.push({ legajo, nombre, apellido, dni, tp1, tp2, tp3, tp4, primerParcial, segundoParcial, estado });
@@ -351,6 +346,7 @@ function contenedorNuevosAlumnos() {
 }
 
 //----------------------------------------------------------------------
+//* CARGAR NOTAS
 
 let botonCargarNotas = document.getElementById('botonCargarNotas');
 
@@ -361,34 +357,70 @@ function cargarNota() {
     const alumnoNotas = alumnos.find((alumno) => alumno.legajo == legajoElegido);
 
     let tp1;
-    do {
-        tp1 = Number(prompt('Ingrese nota de tp1'));
-    } while (isNaN(tp1) || !tp1);
+    let dato1;
+    dato1 = prompt('Ingrese nota de tp1 o Ausente');
+    if (!dato1) {
+        tp3 = 'Sin datos';
+    } else if (dato1 == 'ausente') {
+        tp1 = 1;
+    } else {
+        tp1 = dato1;
+    }
 
     let tp2;
-    do {
-        tp2 = Number(prompt('Ingrese nota de tp2'));
-    } while (isNaN(tp2) || !tp2);
+    let dato2;
+    dato2 = prompt('Ingrese nota de tp2 o Ausente');
+    if (!dato2) {
+        tp3 = 'Sin datos';
+    } else if (dato2 == 'ausente') {
+        tp2 = 1;
+    } else {
+        tp2 = dato2;
+    }
 
     let tp3;
-    do {
-        tp3 = Number(prompt('Ingrese nota de tp3'));
-    } while (isNaN(tp3) || !tp3);
+    let dato3;
+    dato3 = prompt('Ingrese nota de tp3 o Ausente');
+    if (!dato3) {
+        tp3 = 'Sin datos';
+    } else if (dato3 == 'ausente') {
+        tp3 = 1;
+    } else {
+        tp3 = dato3;
+    }
 
     let tp4;
-    do {
-        tp4 = Number(prompt('Ingrese nota de tp4'));
-    } while (isNaN(tp4) || !tp4);
+    let dato4;
+    dato4 = prompt('Ingrese nota de tp4 o Ausente');
+    if (!dato4) {
+        tp4 = 'Sin datos';
+    } else if (dato4 == 'ausente') {
+        tp4 = 1;
+    } else {
+        tp4 = dato4;
+    }
 
     let primerParcial;
-    do {
-        primerParcial = Number(prompt('Ingrese nota de primerParcial'));
-    } while (isNaN(primerParcial) || !primerParcial);
+    let dato5;
+    dato5 = prompt('Ingrese nota de primer parcial o Ausente');
+    if (!dato5) {
+        primerParcial = 'Sin datos';
+    } else if (dato5 == 'ausente') {
+        primerParcial = 1;
+    } else {
+        primerParcial = dato5;
+    }
 
     let segundoParcial;
-    do {
-        segundoParcial = Number(prompt('Ingrese nota de segundoParcial'));
-    } while (isNaN(segundoParcial) || !segundoParcial);
+    let dato6;
+    dato6 = prompt('Ingrese nota del segundo parcial o Ausente');
+    if (!dato6) {
+        segundoParcial = 'Sin datos';
+    } else if (dato6 == 'ausente') {
+        segundoParcial = 1;
+    } else {
+        segundoParcial = dato6;
+    }
 
     alumnoNotas.tp1 = tp1;
     alumnoNotas.tp2 = tp2;
@@ -396,13 +428,66 @@ function cargarNota() {
     alumnoNotas.tp4 = tp4;
     alumnoNotas.primerParcial = primerParcial;
     alumnoNotas.segundoParcial = segundoParcial;
-    // alumnoNotas.promedio = (matematicas + lengua + sociales + naturales) / 4;
 
-    // if (alumnoNotas.promedio >= 7) {
-    //     alumnoNotas.estado = 'REGULAR';
-    // } else {
-    //     alumnoNotas.estado = 'LIBRE';
-    // }
+    let condicion1;
+    if (tp1 >= 7) {
+        condicion1 = 1;
+    } else {
+        condicion1 = 0;
+    }
 
-    listaAlumnos();
+    let condicion2;
+    if (tp2 >= 7) {
+        condicion2 = 1;
+    } else {
+        condicion2 = 0;
+    }
+
+    let condicion3;
+    if (tp3 >= 7) {
+        condicion3 = 1;
+    } else {
+        condicion3 = 0;
+    }
+
+    let condicion4;
+    if (tp4 >= 7) {
+        condicion4 = 1;
+    } else {
+        condicion4 = 0;
+    }
+
+    let sumaTP = condicion1 + condicion2 + condicion3 + condicion4;
+    let condicionTP;
+
+    console.log(condicion1);
+    console.log(condicion2);
+    console.log(condicion3);
+    console.log(condicion4);
+
+    if (sumaTP == 4) {
+        condicionTP = 2;
+    } else if (sumaTP == 3) {
+        condicionTP = 1;
+    } else {
+        condicionTP = 0;
+    }
+    console.log(condicionTP);
+    if (condicionTP == 1 && alumnoNotas.primerParcial >= 7 && alumnoNotas.segundoParcial >= 7) {
+        alumnoNotas.estado = 'APROBADO';
+    } else if (condicionTP == 2 && alumnoNotas.primerParcial >= 5 && alumnoNotas.segundoParcial >= 5) {
+        alumnoNotas.estado = 'APROBADO';
+    } else if (
+        condicionTP != 2 &&
+        alumnoNotas.primerParcial >= 5 &&
+        alumnoNotas.primerParcial < 7 &&
+        alumnoNotas.segundoParcial >= 5 &&
+        alumnoNotas.segundoParcial < 7
+    ) {
+        alumnoNotas.estado = 'REGULAR';
+    } else if (alumnoNotas.primerParcial < 5 || alumnoNotas.segundoParcial > 5) {
+        alumnoNotas.estado = 'LIBRE';
+    }
+
+    listaAlumnos(alumnos);
 }
