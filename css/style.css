@@ -94,6 +94,16 @@ main {
     margin-top: 20px;
 }
 
+.inicioDato {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
 #contenedorInfo h1 {
     font-size: 40px;
     position: relative;
