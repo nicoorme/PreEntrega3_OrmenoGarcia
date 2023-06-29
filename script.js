@@ -193,11 +193,11 @@ function usuarioNavBar() {
     usuarios.forEach((usuario) => {
         if (usuario.usuario.toLowerCase() === inputUsuario.value.toLowerCase()) {
             user.innerHTML = `
-            <img class="fotoUsuario" src="multimedia/img/${usuario.rutaImagen}" alt="">
-            <div id="datosUsuario">
-            <p id="textoUsuario"></p>
-            <p id="legajoUsuario"></p>
-            </div>
+                <img class="fotoUsuario" src="multimedia/img/${usuario.rutaImagen}" alt="">
+                <div id="datosUsuario">
+                <p id="textoUsuario"></p>
+                <p id="legajoUsuario"></p>
+                </div>
             `;
             let textoUsuario = document.getElementById('textoUsuario');
             let legajoUsuario = document.getElementById('legajoUsuario');
@@ -217,11 +217,11 @@ function bienvenida() {
         if (usuario.usuario.toLowerCase() === inputUsuario.value.toLowerCase()) {
             if (usuario.sexo == 'Femenino') {
                 contenedorInfo.innerHTML = `
-                <h1 class="inicio">Bienvenida ${usuario.nombre}</h1>
+                    <h1 class="inicio">Bienvenida ${usuario.nombre}</h1>
                 `;
             } else {
                 contenedorInfo.innerHTML = `
-                <h1 class="inicio">Bienvenido ${usuario.nombre}</h1>
+                    <h1 class="inicio">Bienvenido ${usuario.nombre}</h1>
                 `;
             }
         }
@@ -356,14 +356,14 @@ botonCargarNotas.addEventListener('click', cargarNota);
 function cargarNota() {
     contenedorInfo.innerHTML = `
         <div class="datosNuevoAlumno">
-        <input class="input" id="inputLegajo" placeholder="Nro Legajo Alumno">
-        <input class="input" id="inputTP1" placeholder="Nota TP1 o Ausente">
-        <input class="input" id="inputTP2" placeholder="Nota TP2 o Ausente">
-        <input class="input" id="inputTP3" placeholder="Nota TP3 o Ausente">
-        <input class="input" id="inputTP4" placeholder="Nota TP4 o Ausente">
-        <input class="input" id="inputPrimerParcial" placeholder="Nota Primer Parcial o Ausente">
-        <input class="input" id="inputSegundoParcial" placeholder="Nota Segundo Parcial o Ausente">
-        <button class="botonCargar" id="cargarNota">CARGAR</button>
+            <input class="input" id="inputLegajo" placeholder="Nro Legajo Alumno">
+            <input class="input" id="inputTP1" placeholder="Nota TP1 o Ausente">
+            <input class="input" id="inputTP2" placeholder="Nota TP2 o Ausente">
+            <input class="input" id="inputTP3" placeholder="Nota TP3 o Ausente">
+            <input class="input" id="inputTP4" placeholder="Nota TP4 o Ausente">
+            <input class="input" id="inputPrimerParcial" placeholder="Nota Primer Parcial o Ausente">
+            <input class="input" id="inputSegundoParcial" placeholder="Nota Segundo Parcial o Ausente">
+            <button class="botonCargar" id="cargarNota">CARGAR</button>
         </div>
     `;
     let inputLegajo = document.getElementById('inputLegajo');
