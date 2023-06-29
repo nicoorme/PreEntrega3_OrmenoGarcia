@@ -242,6 +242,11 @@ botonInicio.addEventListener('click', inicio);
 //* LISTA ALUMNOS
 
 let botonLista = document.getElementById('botonLista');
+let alumnosJSON = JSON.parse(localStorage.getItem('alumnosLocal'));
+
+if (alumnosJSON) {
+    alumnos = alumnosJSON;
+}
 botonLista.addEventListener('click', () => listaAlumnos(alumnos));
 
 function listaAlumnos(array) {
@@ -303,11 +308,12 @@ function filtrarYRenderizar(arrayIngresado, input) {
     );
     listaAlumnos(alumnosFiltrados);
 }
+
 //------------------------------------------------------------------------------------
 //* CARGAR ALUMNO NUEVO
 
 let botonNuevoAlumno = document.getElementById('botonNuevoAlumno');
-let legajoNuevo = 1010;
+let legajoNuevo = alumnos[alumnos.length - 1].legajo;
 let nombre;
 let apellido;
 let dni;
@@ -330,7 +336,7 @@ function contenedorNuevosAlumnos() {
         nombre = document.getElementById('nombreNuevoAlumno').value;
         apellido = document.getElementById('apellidoNuevoAlumno').value;
         dni = document.getElementById('dniNuevoAlumno').value;
-        let legajo = legajoNuevo + 1;
+        let legajo = ++legajoNuevo;
         let tp1 = 'Sin datos';
         let tp2 = 'Sin datos';
         let tp3 = 'Sin datos';
@@ -342,6 +348,8 @@ function contenedorNuevosAlumnos() {
 
         alumnos.push({ legajo, nombre, apellido, dni, tp1, tp2, tp3, tp4, primerParcial, segundoParcial, estado });
         listaAlumnos(alumnos);
+
+        localStorage.setItem('alumnosLocal', JSON.stringify(alumnos));
     }
 }
 
@@ -500,7 +508,7 @@ function cargarNota() {
         } else {
             alumnoNotas.estado = 'REGULAR';
         }
-
+        localStorage.setItem('alumnosLocal', JSON.stringify(alumnos));
         listaAlumnos(alumnos);
     }
 }
