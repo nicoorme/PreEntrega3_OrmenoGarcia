@@ -3,7 +3,7 @@ let usuarios = [
         legajo: 1,
         nombre: 'Cecilia',
         apellido: 'Lorusso',
-        usuario: 'lorusso',
+        login: 'lorusso',
         contrasena: 'prueba',
         dni: 45234442,
         rutaImagen: 'profesora.jpg',
@@ -13,7 +13,7 @@ let usuarios = [
         legajo: 2,
         nombre: 'Maria',
         apellido: 'Farisello',
-        usuario: 'farisello',
+        login: 'farisello',
         contrasena: 'prueba',
         dni: 42330393,
         rutaImagen: 'profesora.jpg',
@@ -23,7 +23,7 @@ let usuarios = [
         legajo: 3,
         nombre: 'Guillermo',
         apellido: 'Laito',
-        usuario: 'laito',
+        login: 'laito',
         contrasena: 'prueba',
         dni: 43982710,
         rutaImagen: 'profesor.jpg',
@@ -33,7 +33,7 @@ let usuarios = [
         legajo: 4,
         nombre: 'Cristina',
         apellido: 'Perez',
-        usuario: 'perez',
+        login: 'perez',
         contrasena: 'prueba',
         dni: 44992692,
         rutaImagen: 'profesora.jpg',
@@ -43,7 +43,7 @@ let usuarios = [
         legajo: 5,
         nombre: 'Juan Carlos',
         apellido: 'Torres',
-        usuario: 'torres',
+        login: 'torres',
         contrasena: 'prueba',
         dni: 45927433,
         rutaImagen: 'profesor.jpg',
@@ -190,32 +190,31 @@ let contenedorInfo = document.getElementById('contenedorInfo');
 
 let user = document.getElementById('usuario');
 function usuarioNavBar() {
-    usuarios.forEach(({ usuario, rutaImagen, nombre, apellido, legajo }) => {
-        if (usuario.toLowerCase() === inputUsuario.value.toLowerCase()) {
-            user.innerHTML = `
-                <img class="fotoUsuario" src="multimedia/img/${rutaImagen}" alt="">
+    let usuarioEncontrado = usuarios.find(({ login }) => login == inputUsuario.value.toLowerCase());
+    if (usuarioEncontrado) {
+        user.innerHTML = `
+                <img class="fotoUsuario" src="multimedia/img/${usuarioEncontrado.rutaImagen}" alt="">
                 <div id="datosUsuario">
                 <p id="textoUsuario"></p>
                 <p id="legajoUsuario"></p>
                 </div>
             `;
-            let textoUsuario = document.getElementById('textoUsuario');
-            let legajoUsuario = document.getElementById('legajoUsuario');
-            textoUsuario.innerText = `${nombre} ${apellido}`;
-            legajoUsuario.innerText = `Legajo: ${legajo}`;
-        } else if (usuario.toLowerCase() !== inputUsuario.value.toLowerCase() || inputUsuario.value.toLowerCase() == '') {
-            user.innerHTML = `
-                <div id="datosUsuario">
-                <p id="textoUsuario"></p>
-                <p id="legajoUsuario"></p>
-                </div>
-            `;
-            let textoUsuario = document.getElementById('textoUsuario');
-            let legajoUsuario = document.getElementById('legajoUsuario');
-            textoUsuario.innerText = `INVITADO`;
-            legajoUsuario.innerText = `Legajo: -`;
-        }
-    });
+        let textoUsuario = document.getElementById('textoUsuario');
+        let legajoUsuario = document.getElementById('legajoUsuario');
+        textoUsuario.innerText = `${usuarioEncontrado.nombre} ${usuarioEncontrado.apellido}`;
+        legajoUsuario.innerText = `Legajo: ${usuarioEncontrado.legajo}`;
+    } else {
+        user.innerHTML = `
+                        <div id="datosUsuario">
+                        <p id="textoUsuario"></p>
+                        <p id="legajoUsuario"></p>
+                        </div>
+                    `;
+        let textoUsuario = document.getElementById('textoUsuario');
+        let legajoUsuario = document.getElementById('legajoUsuario');
+        textoUsuario.innerText = `INVITADO`;
+        legajoUsuario.innerText = `Legajo: -`;
+    }
 }
 
 let inputUsuario = document.getElementById('inputUsuario');
@@ -224,27 +223,26 @@ botonInicioUsuario.addEventListener('click', bienvenida);
 
 function bienvenida() {
     usuarioNavBar();
-    usuarios.forEach(({ usuario, sexo, nombre }) => {
-        if (usuario.toLowerCase() === inputUsuario.value.toLowerCase()) {
-            if (sexo == 'Femenino') {
-                contenedorInfo.innerHTML = `
-                    <h1 class="inicio">Bienvenida ${nombre}</h1>
-                `;
-            } else {
-                contenedorInfo.innerHTML = `
-                    <h1 class="inicio">Bienvenido ${nombre}</h1>
-                `;
-            }
-        } else if (usuario.toLowerCase() !== inputUsuario.value.toLowerCase() && inputUsuario.value) {
+    let usuarioEncontrado = usuarios.find(({ login }) => login.toLowerCase() === inputUsuario.value.toLowerCase());
+    if (usuarioEncontrado) {
+        if (usuarioEncontrado.sexo == 'Femenino') {
             contenedorInfo.innerHTML = `
-                    <h1 class="inicio">HOLA ${inputUsuario.value.toUpperCase()}</h1>
+                    <h1 class="inicio">Bienvenida ${usuarioEncontrado.nombre}</h1>
                 `;
-        } else if (inputUsuario.value == '') {
+        } else {
             contenedorInfo.innerHTML = `
-                    <h1 class="inicio">HOLA INVITADO</h1>
+                    <h1 class="inicio">Bienvenido ${usuarioEncontrado.nombre}</h1>
                 `;
         }
-    });
+    } else if (!usuarioEncontrado) {
+        contenedorInfo.innerHTML = `
+                    <h1 class="inicio">HOLA ${inputUsuario.value.toUpperCase()}</h1>
+                `;
+    } else if (inputUsuario.value == '') {
+        contenedorInfo.innerHTML = `
+                    <h1 class="inicio">HOLA INVITADO</h1>
+                `;
+    }
 }
 
 let botonInicio = document.getElementById('botonInicio');
@@ -300,11 +298,10 @@ function listaAlumnos(array) {
     });
 }
 
-botonLista.addEventListener('click', mostrarOcultar);
+botonLista.addEventListener('click', mostrarBuscador);
 
-function mostrarOcultar() {
+function mostrarBuscador() {
     let contenedorFiltros = document.getElementById('barraFiltros');
-    contenedorFiltros.classList.toggle('mostrar');
     contenedorFiltros.classList.toggle('oculto');
 }
 
