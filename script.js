@@ -205,6 +205,7 @@ function usuarioNavBar() {
         legajoUsuario.innerText = `Legajo: ${usuarioEncontrado.legajo}`;
     } else {
         user.innerHTML = `
+                        <img class="fotoUsuario" src="multimedia/img/invitado.jpeg" alt="">
                         <div id="datosUsuario">
                         <p id="textoUsuario"></p>
                         <p id="legajoUsuario"></p>
@@ -340,9 +341,9 @@ botonNuevoAlumno.addEventListener('click', contenedorNuevosAlumnos);
 function contenedorNuevosAlumnos() {
     contenedorInfo.innerHTML = `
         <div class="datosNuevoAlumno">
-            <input type="text" class="input" id="nombreNuevoAlumno" placeholder="Ingrese nombre del alumno">
-            <input type="text" class="input" id="apellidoNuevoAlumno" placeholder="Ingrese apellido del alumno">
-            <input type="number" class="input" id="dniNuevoAlumno" placeholder="Ingrese DNI del alumno">
+            <input type="text" class="input" id="nombreNuevoAlumno" placeholder="Ingresá el nombre del alumno">
+            <input type="text" class="input" id="apellidoNuevoAlumno" placeholder="Ingresá el apellido del alumno">
+            <input type="number" class="input" id="dniNuevoAlumno" placeholder="Ingresá el DNI del alumno">
             <button class="botonCargar" id="botonCargarNuevoAlumno">CARGAR</button>
         </div>
     `;
@@ -384,11 +385,10 @@ let botonCargarNotas = document.getElementById('botonCargarNotas');
 
 botonCargarNotas.addEventListener('click', cargarNota);
 
-//! MODIFICACION 1 - INPUT POR LISTA
 function cargarNota() {
     contenedorInfo.innerHTML = `
         <div class="datosNuevoAlumno">
-            <select class="input" id="inputLista" placeholder="Nota TP1 o Ausente"><option>Seleccione un alumno</option></select>
+            <select class="input" id="inputLista" placeholder="Nota TP1 o Ausente"><option>Seleccioná un alumno</option></select>
             <input class="input" id="inputTP1" placeholder="Nota TP1 o Ausente">
             <input class="input" id="inputTP2" placeholder="Nota TP2 o Ausente">
             <input class="input" id="inputTP3" placeholder="Nota TP3 o Ausente">
@@ -417,7 +417,6 @@ function cargarNota() {
     function datoControlAlumno(e) {
         inputLegajo = e.target.value;
     }
-    //!---------------------------------
 
     let inputTP1 = document.getElementById('inputTP1');
     let inputTP2 = document.getElementById('inputTP2');
