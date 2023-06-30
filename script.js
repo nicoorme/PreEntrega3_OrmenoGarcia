@@ -183,6 +183,8 @@ let alumnos = [
         estado: 'Sin datos',
     },
 ];
+
+let notasPosibles = ['AUSENTE', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 //-------------------------------------------------------------------------
 //* INICIO
 
@@ -388,30 +390,52 @@ botonCargarNotas.addEventListener('click', cargarNota);
 function cargarNota() {
     contenedorInfo.innerHTML = `
         <div class="datosNuevoAlumno">
-            <select class="input" id="inputLista" placeholder="Nota TP1 o Ausente"><option>Seleccioná un alumno</option></select>
-            <input class="input" id="inputTP1" placeholder="Nota TP1 o Ausente">
-            <input class="input" id="inputTP2" placeholder="Nota TP2 o Ausente">
-            <input class="input" id="inputTP3" placeholder="Nota TP3 o Ausente">
-            <input class="input" id="inputTP4" placeholder="Nota TP4 o Ausente">
-            <input class="input" id="inputPrimerParcial" placeholder="Nota Primer Parcial o Ausente">
-            <input class="input" id="inputSegundoParcial" placeholder="Nota Segundo Parcial o Ausente">
-            <button class="botonCargar" id="cargarNota">CARGAR</button>
+        <select class="input" id="inputAlumnos"><option>Seleccioná un alumno</option></select>
+        <select class="input inputNotas" id="inputTP1"><option>Seleccioná la nota del TP1</option></select>
+        <select class="input inputNotas" id="inputTP2"><option>Seleccioná la nota del TP2</option></select>
+        <select class="input inputNotas" id="inputTP3"><option>Seleccioná la nota del TP3</option></select>
+        <select class="input inputNotas" id="inputTP4"><option>Seleccioná la nota del TP4</option></select>
+        <select class="input inputNotas" id="inputPrimerParcial"><option>Seleccioná la nota del Primer Parcial</option></select>
+        <select class="input inputNotas" id="inputSegundoParcial"><option>Seleccioná la nota del Segundo Parcial</option></select>
+        <button class="botonCargar" id="cargarNota">CARGAR</button>
         </div>
-    `;
-
-    let inputLista = document.getElementById('inputLista');
-
-    alumnos.forEach(({ legajo, nombre, apellido }) => {
-        let elementoLista = document.createElement('option');
-        elementoLista.innerText = `
-            ${legajo} - ${nombre} ${apellido}
         `;
-        elementoLista.value = `${legajo}`;
+    //! VUELTA ATRAS
+    // <input class="input" id="inputTP1" placeholder="Nota TP1 o Ausente">
+    // <input class="input" id="inputTP2" placeholder="Nota TP2 o Ausente">
+    // <input class="input" id="inputTP3" placeholder="Nota TP3 o Ausente">
+    // <input class="input" id="inputTP4" placeholder="Nota TP4 o Ausente">
+    // <input class="input" id="inputPrimerParcial" placeholder="Nota Primer Parcial o Ausente">
+    // <input class="input" id="inputSegundoParcial" placeholder="Nota Segundo Parcial o Ausente">
+    //!---
 
-        inputLista.appendChild(elementoLista);
+    let inputAlumnos = document.getElementById('inputAlumnos');
+    alumnos.forEach(({ legajo, nombre, apellido }) => {
+        let elementosListaAlumnos = document.createElement('option');
+        elementosListaAlumnos.innerText = `
+        ${legajo} - ${nombre} ${apellido}
+        `;
+        elementosListaAlumnos.value = `${legajo}`;
 
-        inputLista.addEventListener('change', datoControlAlumno);
+        inputAlumnos.appendChild(elementosListaAlumnos);
+
+        inputAlumnos.addEventListener('change', datoControlAlumno);
     });
+    //! VUELTA ATRAS (BORRAR)
+
+    let inputNotas = document.getElementsByClassName('inputNotas');
+
+    notasPosibles.forEach((elemento) => {
+        let valorNota = document.createElement('option');
+        valorNota.innerText = `
+        ${elemento}
+        `;
+        inputNotas.appendChild(valorNota);
+    });
+
+    // notasPosibles.forEach((nota) => {
+    // });
+    //!-------------
 
     let inputLegajo;
     function datoControlAlumno(e) {
