@@ -435,8 +435,6 @@ function cargarNota() {
 
     function nuevaNota() {
         let legajoElegido = datoControl;
-        console.log(datoControl);
-        console.log(legajoElegido.value);
         const alumnoNotas = alumnos.find(({ legajo }) => legajo == legajoElegido);
 
         let tp1;
