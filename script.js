@@ -248,6 +248,13 @@ function bienvenida() {
 let botonInicio = document.getElementById('botonInicio');
 botonInicio.addEventListener('click', bienvenida);
 
+botonInicio.addEventListener('click', ocultarBuscador);
+
+function ocultarBuscador() {
+    let contenedorFiltros = document.getElementById('barraFiltros');
+    contenedorFiltros.classList.add('oculto');
+}
+
 //-------------------------------------------------------------------------
 //* LISTA ALUMNOS
 
@@ -302,7 +309,7 @@ botonLista.addEventListener('click', mostrarBuscador);
 
 function mostrarBuscador() {
     let contenedorFiltros = document.getElementById('barraFiltros');
-    contenedorFiltros.classList.toggle('oculto');
+    contenedorFiltros.classList.remove('oculto');
 }
 
 let buscador = document.getElementById('buscador');
@@ -361,6 +368,13 @@ function contenedorNuevosAlumnos() {
 
         localStorage.setItem('alumnosLocal', JSON.stringify(alumnos));
     }
+}
+
+botonNuevoAlumno.addEventListener('click', ocultarBuscador);
+
+function ocultarBuscador() {
+    let contenedorFiltros = document.getElementById('barraFiltros');
+    contenedorFiltros.classList.add('oculto');
 }
 
 //----------------------------------------------------------------------
@@ -521,4 +535,11 @@ function cargarNota() {
         localStorage.setItem('alumnosLocal', JSON.stringify(alumnos));
         listaAlumnos(alumnos);
     }
+}
+
+botonCargarNotas.addEventListener('click', ocultarBuscador);
+
+function ocultarBuscador() {
+    let contenedorFiltros = document.getElementById('barraFiltros');
+    contenedorFiltros.classList.add('oculto');
 }
