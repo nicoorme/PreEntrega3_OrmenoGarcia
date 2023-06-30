@@ -190,10 +190,10 @@ let contenedorInfo = document.getElementById('contenedorInfo');
 
 let user = document.getElementById('usuario');
 function usuarioNavBar() {
-    usuarios.forEach((usuario) => {
-        if (usuario.usuario.toLowerCase() === inputUsuario.value.toLowerCase()) {
+    usuarios.forEach(({ usuario, rutaImagen, nombre, apellido, legajo }) => {
+        if (usuario.toLowerCase() === inputUsuario.value.toLowerCase()) {
             user.innerHTML = `
-                <img class="fotoUsuario" src="multimedia/img/${usuario.rutaImagen}" alt="">
+                <img class="fotoUsuario" src="multimedia/img/${rutaImagen}" alt="">
                 <div id="datosUsuario">
                 <p id="textoUsuario"></p>
                 <p id="legajoUsuario"></p>
@@ -201,8 +201,19 @@ function usuarioNavBar() {
             `;
             let textoUsuario = document.getElementById('textoUsuario');
             let legajoUsuario = document.getElementById('legajoUsuario');
-            textoUsuario.innerText = `${usuario.nombre} ${usuario.apellido}`;
-            legajoUsuario.innerText = `Legajo: ${usuario.legajo}`;
+            textoUsuario.innerText = `${nombre} ${apellido}`;
+            legajoUsuario.innerText = `Legajo: ${legajo}`;
+        } else if (usuario.toLowerCase() !== inputUsuario.value.toLowerCase() || inputUsuario.value.toLowerCase() == '') {
+            user.innerHTML = `
+                <div id="datosUsuario">
+                <p id="textoUsuario"></p>
+                <p id="legajoUsuario"></p>
+                </div>
+            `;
+            let textoUsuario = document.getElementById('textoUsuario');
+            let legajoUsuario = document.getElementById('legajoUsuario');
+            textoUsuario.innerText = `INVITADO`;
+            legajoUsuario.innerText = `Legajo: -`;
         }
     });
 }
@@ -213,17 +224,25 @@ botonInicioUsuario.addEventListener('click', bienvenida);
 
 function bienvenida() {
     usuarioNavBar();
-    usuarios.forEach((usuario) => {
-        if (usuario.usuario.toLowerCase() === inputUsuario.value.toLowerCase()) {
-            if (usuario.sexo == 'Femenino') {
+    usuarios.forEach(({ usuario, sexo, nombre }) => {
+        if (usuario.toLowerCase() === inputUsuario.value.toLowerCase()) {
+            if (sexo == 'Femenino') {
                 contenedorInfo.innerHTML = `
-                    <h1 class="inicio">Bienvenida ${usuario.nombre}</h1>
+                    <h1 class="inicio">Bienvenida ${nombre}</h1>
                 `;
             } else {
                 contenedorInfo.innerHTML = `
-                    <h1 class="inicio">Bienvenido ${usuario.nombre}</h1>
+                    <h1 class="inicio">Bienvenido ${nombre}</h1>
                 `;
             }
+        } else if (usuario.toLowerCase() !== inputUsuario.value.toLowerCase() && inputUsuario.value) {
+            contenedorInfo.innerHTML = `
+                    <h1 class="inicio">HOLA ${inputUsuario.value.toUpperCase()}</h1>
+                `;
+        } else if (inputUsuario.value == '') {
+            contenedorInfo.innerHTML = `
+                    <h1 class="inicio">HOLA INVITADO</h1>
+                `;
         }
     });
 }
@@ -261,21 +280,21 @@ function listaAlumnos(array) {
         </div>
         `;
 
-    array.forEach((elemento) => {
+    array.forEach(({ legajo, nombre, apellido, tp1, tp2, tp3, tp4, primerParcial, segundoParcial, estado }) => {
         let tarjetaAlumno = document.createElement('div');
 
         tarjetaAlumno.classList.add('tarjetaAlumno');
         tarjetaAlumno.innerHTML = `
-            <p class = 'p1'>${elemento.legajo}</p>
-            <p class = 'p2'>${elemento.nombre}</p>
-            <p class = 'p3'>${elemento.apellido}</p>
-            <p class = 'p4'>${elemento.tp1}</p>
-            <p class = 'p5'>${elemento.tp2}</p>
-            <p class = 'p6'>${elemento.tp3}</p>
-            <p class = 'p7'>${elemento.tp4}</p>
-            <p class = 'p8'>${elemento.primerParcial}</p>
-            <p class = 'p9'>${elemento.segundoParcial}</p>
-            <p class = 'p10'>${elemento.estado}</p>
+            <p class = 'p1'>${legajo}</p>
+            <p class = 'p2'>${nombre}</p>
+            <p class = 'p3'>${apellido}</p>
+            <p class = 'p4'>${tp1}</p>
+            <p class = 'p5'>${tp2}</p>
+            <p class = 'p6'>${tp3}</p>
+            <p class = 'p7'>${tp4}</p>
+            <p class = 'p8'>${primerParcial}</p>
+            <p class = 'p9'>${segundoParcial}</p>
+            <p class = 'p10'>${estado}</p>
         `;
         lista.appendChild(tarjetaAlumno);
     });
@@ -294,10 +313,11 @@ buscador.addEventListener('input', () => filtrarYRenderizar(alumnos, buscador.va
 
 function filtrarYRenderizar(arrayIngresado, input) {
     let alumnosFiltrados = arrayIngresado.filter(
-        (elemento) =>
-            elemento.nombre.toLowerCase().includes(input.toLowerCase()) ||
-            elemento.apellido.toLowerCase().includes(input.toLowerCase()) ||
-            elemento.estado.toLowerCase().includes(input.toLowerCase())
+        ({ legajo, nombre, apellido, estado }) =>
+            legajo.toString().includes(input) ||
+            nombre.toLowerCase().includes(input.toLowerCase()) ||
+            apellido.toLowerCase().includes(input.toLowerCase()) ||
+            estado.toLowerCase().includes(input.toLowerCase())
     );
     listaAlumnos(alumnosFiltrados);
 }
@@ -379,7 +399,7 @@ function cargarNota() {
 
     function nuevaNota() {
         let legajoElegido = inputLegajo.value;
-        const alumnoNotas = alumnos.find((alumno) => alumno.legajo == legajoElegido);
+        const alumnoNotas = alumnos.find(({ legajo }) => legajo == legajoElegido);
 
         let tp1;
         let dato1 = inputTP1.value;
