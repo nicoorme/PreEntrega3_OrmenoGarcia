@@ -57,130 +57,130 @@ let alumnos = [
         nombre: 'Ana',
         apellido: 'Vivas',
         dni: 45234442,
-        tp1: 'Sin datos',
-        tp2: 'Sin datos',
-        tp3: 'Sin datos',
-        tp4: 'Sin datos',
-        primerParcial: 'Sin datos',
-        segundoParcial: 'Sin datos',
-        estado: 'Sin datos',
+        tp1: '-',
+        tp2: '-',
+        tp3: '-',
+        tp4: '-',
+        primerParcial: '-',
+        segundoParcial: '-',
+        estado: '-',
     },
     {
         legajo: 1002,
         nombre: 'Manuel',
         apellido: 'Ordoñez',
         dni: 42330393,
-        tp1: 'Sin datos',
-        tp2: 'Sin datos',
-        tp3: 'Sin datos',
-        tp4: 'Sin datos',
-        primerParcial: 'Sin datos',
-        segundoParcial: 'Sin datos',
-        estado: 'Sin datos',
+        tp1: '-',
+        tp2: '-',
+        tp3: '-',
+        tp4: '-',
+        primerParcial: '-',
+        segundoParcial: '-',
+        estado: '-',
     },
     {
         legajo: 1003,
         nombre: 'Alejandro',
         apellido: 'Moran',
         dni: 43982710,
-        tp1: 'Sin datos',
-        tp2: 'Sin datos',
-        tp3: 'Sin datos',
-        tp4: 'Sin datos',
-        primerParcial: 'Sin datos',
-        segundoParcial: 'Sin datos',
-        estado: 'Sin datos',
+        tp1: '-',
+        tp2: '-',
+        tp3: '-',
+        tp4: '-',
+        primerParcial: '-',
+        segundoParcial: '-',
+        estado: '-',
     },
     {
         legajo: 1004,
         nombre: 'Eugenio',
         apellido: 'Islas',
         dni: 44992692,
-        tp1: 'Sin datos',
-        tp2: 'Sin datos',
-        tp3: 'Sin datos',
-        tp4: 'Sin datos',
-        primerParcial: 'Sin datos',
-        segundoParcial: 'Sin datos',
-        estado: 'Sin datos',
+        tp1: '-',
+        tp2: '-',
+        tp3: '-',
+        tp4: '-',
+        primerParcial: '-',
+        segundoParcial: '-',
+        estado: '-',
     },
     {
         legajo: 1005,
         nombre: 'Carla',
         apellido: 'Gomez',
         dni: 45927433,
-        tp1: 'Sin datos',
-        tp2: 'Sin datos',
-        tp3: 'Sin datos',
-        tp4: 'Sin datos',
-        primerParcial: 'Sin datos',
-        segundoParcial: 'Sin datos',
-        estado: 'Sin datos',
+        tp1: '-',
+        tp2: '-',
+        tp3: '-',
+        tp4: '-',
+        primerParcial: '-',
+        segundoParcial: '-',
+        estado: '-',
     },
     {
         legajo: 1006,
         nombre: 'Natalia',
         apellido: 'Acosta',
         dni: 44229018,
-        tp1: 'Sin datos',
-        tp2: 'Sin datos',
-        tp3: 'Sin datos',
-        tp4: 'Sin datos',
-        primerParcial: 'Sin datos',
-        segundoParcial: 'Sin datos',
-        estado: 'Sin datos',
+        tp1: '-',
+        tp2: '-',
+        tp3: '-',
+        tp4: '-',
+        primerParcial: '-',
+        segundoParcial: '-',
+        estado: '-',
     },
     {
         legajo: 1007,
         nombre: 'Federico',
         apellido: 'Rivas',
         dni: 43847993,
-        tp1: 'Sin datos',
-        tp2: 'Sin datos',
-        tp3: 'Sin datos',
-        tp4: 'Sin datos',
-        primerParcial: 'Sin datos',
-        segundoParcial: 'Sin datos',
-        estado: 'Sin datos',
+        tp1: '-',
+        tp2: '-',
+        tp3: '-',
+        tp4: '-',
+        primerParcial: '-',
+        segundoParcial: '-',
+        estado: '-',
     },
     {
         legajo: 1008,
         nombre: 'Laura',
         apellido: 'Giordano',
         dni: 45929111,
-        tp1: 'Sin datos',
-        tp2: 'Sin datos',
-        tp3: 'Sin datos',
-        tp4: 'Sin datos',
-        primerParcial: 'Sin datos',
-        segundoParcial: 'Sin datos',
-        estado: 'Sin datos',
+        tp1: '-',
+        tp2: '-',
+        tp3: '-',
+        tp4: '-',
+        primerParcial: '-',
+        segundoParcial: '-',
+        estado: '-',
     },
     {
         legajo: 1009,
         nombre: 'Micaela',
         apellido: 'Martinez',
         dni: 46301112,
-        primerParcial: 'Sin datos',
-        segundoParcial: 'Sin datos',
-        tp1: 'Sin datos',
-        tp2: 'Sin datos',
-        tp3: 'Sin datos',
-        tp4: 'Sin datos',
-        estado: 'Sin datos',
+        primerParcial: '-',
+        segundoParcial: '-',
+        tp1: '-',
+        tp2: '-',
+        tp3: '-',
+        tp4: '-',
+        estado: '-',
     },
     {
         legajo: 1010,
         nombre: 'Joaquin',
         apellido: 'Garcia',
         dni: 46321234,
-        tp1: 'Sin datos',
-        tp2: 'Sin datos',
-        tp3: 'Sin datos',
-        tp4: 'Sin datos',
-        primerParcial: 'Sin datos',
-        segundoParcial: 'Sin datos',
-        estado: 'Sin datos',
+        tp1: '-',
+        tp2: '-',
+        tp3: '-',
+        tp4: '-',
+        primerParcial: '-',
+        segundoParcial: '-',
+        estado: '-',
     },
 ];
 
@@ -351,19 +351,20 @@ function contenedorNuevosAlumnos() {
     `;
     let botonCargarNuevoAlumno = document.getElementById('botonCargarNuevoAlumno');
     botonCargarNuevoAlumno.addEventListener('click', nuevoAlumno);
+    botonCargarNuevoAlumno.addEventListener('click', mostrarBuscador);
 
     function nuevoAlumno() {
         nombre = document.getElementById('nombreNuevoAlumno').value;
         apellido = document.getElementById('apellidoNuevoAlumno').value;
         dni = document.getElementById('dniNuevoAlumno').value;
         let legajo = ++legajoNuevo;
-        let tp1 = 'Sin datos';
-        let tp2 = 'Sin datos';
-        let tp3 = 'Sin datos';
-        let tp4 = 'Sin datos';
-        let primerParcial = 'Sin datos';
-        let segundoParcial = 'Sin datos';
-        let estado = 'Sin datos';
+        let tp1 = '-';
+        let tp2 = '-';
+        let tp3 = '-';
+        let tp4 = '-';
+        let primerParcial = '-';
+        let segundoParcial = '-';
+        let estado = '-';
         legajoNuevo = legajo;
 
         alumnos.push({ legajo, nombre, apellido, dni, tp1, tp2, tp3, tp4, primerParcial, segundoParcial, estado });
@@ -397,17 +398,9 @@ function cargarNota() {
         <select class="input inputNotas" id="inputTP4"><option>Seleccioná la nota del TP4</option></select>
         <select class="input inputNotas" id="inputPrimerParcial"><option>Seleccioná la nota del Primer Parcial</option></select>
         <select class="input inputNotas" id="inputSegundoParcial"><option>Seleccioná la nota del Segundo Parcial</option></select>
-        <button class="botonCargar" id="cargarNota">CARGAR</button>
+        <button class="botonCargar" id="botonCargarNota">CARGAR</button>
         </div>
         `;
-    //! VUELTA ATRAS
-    // <input class="input" id="inputTP1" placeholder="Nota TP1 o Ausente">
-    // <input class="input" id="inputTP2" placeholder="Nota TP2 o Ausente">
-    // <input class="input" id="inputTP3" placeholder="Nota TP3 o Ausente">
-    // <input class="input" id="inputTP4" placeholder="Nota TP4 o Ausente">
-    // <input class="input" id="inputPrimerParcial" placeholder="Nota Primer Parcial o Ausente">
-    // <input class="input" id="inputSegundoParcial" placeholder="Nota Segundo Parcial o Ausente">
-    //!---
 
     let inputAlumnos = document.getElementById('inputAlumnos');
     alumnos.forEach(({ legajo, nombre, apellido }) => {
@@ -421,21 +414,20 @@ function cargarNota() {
 
         inputAlumnos.addEventListener('change', datoControlAlumno);
     });
-    //! VUELTA ATRAS (BORRAR)
 
-    let inputNotas = document.getElementsByClassName('inputNotas');
+    let inputNotas = document.querySelectorAll('.inputNotas');
 
-    notasPosibles.forEach((elemento) => {
-        let valorNota = document.createElement('option');
-        valorNota.innerText = `
-        ${elemento}
-        `;
-        inputNotas.appendChild(valorNota);
+    inputNotas.forEach((input) => {
+        const fragment = document.createDocumentFragment();
+        notasPosibles.forEach((elemento) => {
+            let valorNota = document.createElement('option');
+            valorNota.innerText = `
+            ${elemento}
+            `;
+            fragment.appendChild(valorNota);
+        });
+        input.appendChild(fragment);
     });
-
-    // notasPosibles.forEach((nota) => {
-    // });
-    //!-------------
 
     let inputLegajo;
     function datoControlAlumno(e) {
@@ -449,16 +441,16 @@ function cargarNota() {
     let inputPrimerParcial = document.getElementById('inputPrimerParcial');
     let inputSegundoParcial = document.getElementById('inputSegundoParcial');
 
-    let botonCargarNotas = document.getElementById('cargarNota');
+    let botonCargarNotas = document.getElementById('botonCargarNota');
     botonCargarNotas.addEventListener('click', nuevaNota);
+    botonCargarNotas.addEventListener('click', mostrarBuscador);
 
     function nuevaNota() {
         let alumnoNotas = alumnos.find(({ legajo }) => legajo == inputLegajo);
-        console.log(alumnoNotas);
         let tp1;
         let dato1 = inputTP1.value;
         if (!dato1) {
-            tp3 = 'Sin datos';
+            tp3 = '-';
         } else if (dato1 == 'ausente') {
             tp1 = 1;
         } else {
@@ -468,7 +460,7 @@ function cargarNota() {
         let tp2;
         let dato2 = inputTP2.value;
         if (!dato2) {
-            tp3 = 'Sin datos';
+            tp3 = '-';
         } else if (dato2 == 'ausente') {
             tp2 = 1;
         } else {
@@ -478,7 +470,7 @@ function cargarNota() {
         let tp3;
         let dato3 = inputTP3.value;
         if (!dato3) {
-            tp3 = 'Sin datos';
+            tp3 = '-';
         } else if (dato3 == 'ausente') {
             tp3 = 1;
         } else {
@@ -488,7 +480,7 @@ function cargarNota() {
         let tp4;
         let dato4 = inputTP4.value;
         if (!dato4) {
-            tp4 = 'Sin datos';
+            tp4 = '-';
         } else if (dato4 == 'ausente') {
             tp4 = 1;
         } else {
@@ -498,7 +490,7 @@ function cargarNota() {
         let primerParcial;
         let dato5 = inputPrimerParcial.value;
         if (!dato5) {
-            primerParcial = 'Sin datos';
+            primerParcial = '-';
         } else if (dato5 == 'ausente') {
             primerParcial = 1;
         } else {
@@ -508,7 +500,7 @@ function cargarNota() {
         let segundoParcial;
         let dato6 = inputSegundoParcial.value;
         if (!dato6) {
-            segundoParcial = 'Sin datos';
+            segundoParcial = '-';
         } else if (dato6 == 'ausente') {
             segundoParcial = 1;
         } else {
