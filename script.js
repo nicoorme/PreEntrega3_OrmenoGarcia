@@ -392,12 +392,12 @@ function cargarNota() {
     contenedorInfo.innerHTML = `
         <div class="datosNuevoAlumno">
         <select class="input" id="inputAlumnos"><option>Seleccioná un alumno</option></select>
-        <select class="input inputNotas" id="inputTP1"><option>Seleccioná la nota del TP1</option></select>
-        <select class="input inputNotas" id="inputTP2"><option>Seleccioná la nota del TP2</option></select>
-        <select class="input inputNotas" id="inputTP3"><option>Seleccioná la nota del TP3</option></select>
-        <select class="input inputNotas" id="inputTP4"><option>Seleccioná la nota del TP4</option></select>
-        <select class="input inputNotas" id="inputPrimerParcial"><option>Seleccioná la nota del Primer Parcial</option></select>
-        <select class="input inputNotas" id="inputSegundoParcial"><option>Seleccioná la nota del Segundo Parcial</option></select>
+        <select class="input inputNotas" id="inputTP1"><option value='-'>Seleccioná la nota del TP1</option></select>
+        <select class="input inputNotas" id="inputTP2"><option value='-'>Seleccioná la nota del TP2</option></select>
+        <select class="input inputNotas" id="inputTP3"><option value='-'>Seleccioná la nota del TP3</option></select>
+        <select class="input inputNotas" id="inputTP4"><option value='-'>Seleccioná la nota del TP4</option></select>
+        <select class="input inputNotas" id="inputPrimerParcial"><option value='-'>Seleccioná la nota del Primer Parcial</option></select>
+        <select class="input inputNotas" id="inputSegundoParcial"><option value='-'>Seleccioná la nota del Segundo Parcial</option></select>
         <button class="botonCargar" id="botonCargarNota">CARGAR</button>
         </div>
         `;
@@ -450,7 +450,7 @@ function cargarNota() {
         let tp1;
         let dato1 = inputTP1.value;
         if (!dato1) {
-            tp3 = '-';
+            tp1 = '-';
         } else if (dato1 == 'ausente') {
             tp1 = 1;
         } else {
@@ -460,7 +460,7 @@ function cargarNota() {
         let tp2;
         let dato2 = inputTP2.value;
         if (!dato2) {
-            tp3 = '-';
+            tp2 = '-';
         } else if (dato2 == 'ausente') {
             tp2 = 1;
         } else {
@@ -559,6 +559,8 @@ function cargarNota() {
             alumnoNotas.estado = 'APROBADO';
         } else if (alumnoNotas.primerParcial < 5 || alumnoNotas.segundoParcial < 5) {
             alumnoNotas.estado = 'LIBRE';
+        } else if (alumnoNotas.primerParcial == '-' || alumnoNotas.segundoParcial == '-') {
+            alumnoNotas.estado = '-';
         } else {
             alumnoNotas.estado = 'REGULAR';
         }
