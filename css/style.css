@@ -104,6 +104,12 @@ main {
     gap: 12px;
 }
 
+.inicioDato img {
+    height: 100px;
+    width: auto;
+    margin-bottom: 50px;
+}
+
 #contenedorInfo h1 {
     font-size: 40px;
     position: relative;

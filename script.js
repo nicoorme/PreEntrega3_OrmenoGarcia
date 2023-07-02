@@ -207,6 +207,7 @@ function ejecucionPrograma() {
     botonInicioUsuario.addEventListener('click', () => usuarioNavBar(usuarios, inputUsuario.value, contenedorNavBar));
     botonInicioUsuario.addEventListener('click', () => guardarUsuario(inputUsuario.value));
     botonInicioUsuario.addEventListener('click', () => mostrarBuscador('menuBotones'));
+    botonInicioUsuario.addEventListener('click', () => mostrarBuscador('nav'));
 
     let botonInicio = document.getElementById('botonInicio');
     botonInicio.addEventListener('click', () => inicio(usuarios, contenedorInfo));
