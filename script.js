@@ -206,6 +206,7 @@ function ejecucionPrograma() {
     botonInicioUsuario.addEventListener('click', () => bienvenida(usuarios, inputUsuario.value, contenedorInfo));
     botonInicioUsuario.addEventListener('click', () => usuarioNavBar(usuarios, inputUsuario.value, contenedorNavBar));
     botonInicioUsuario.addEventListener('click', () => guardarUsuario(inputUsuario.value));
+    botonInicioUsuario.addEventListener('click', () => mostrarBuscador('menuBotones'));
 
     let botonInicio = document.getElementById('botonInicio');
     botonInicio.addEventListener('click', () => inicio(usuarios, contenedorInfo));
@@ -222,7 +223,7 @@ function ejecucionPrograma() {
         botonLista.addEventListener('click', () => listaAlumnos(alumnos, contenedorInfo));
     }
 
-    botonLista.addEventListener('click', mostrarBuscador);
+    botonLista.addEventListener('click', () => mostrarBuscador('barraFiltros'));
 
     //*------------------------
     //* EJECUCION BUSCADOR
@@ -244,7 +245,7 @@ function ejecucionPrograma() {
     } else {
         botonNuevoAlumno.addEventListener('click', () => contenedorNuevoAlumno(alumnos, contenedorInfo));
     }
-    botonNuevoAlumno.addEventListener('click', ocultarBuscador);
+    botonNuevoAlumno.addEventListener('click', () => ocultarBuscador('barraFiltros'));
 
     //*------------------------
     //* EJECUCION CARGAR NOTAS
@@ -257,7 +258,7 @@ function ejecucionPrograma() {
     } else {
         botonCargarNotas.addEventListener('click', () => cargarNotas(alumnos, notasPosibles, contenedorInfo));
     }
-    botonCargarNotas.addEventListener('click', ocultarBuscador);
+    botonCargarNotas.addEventListener('click', () => ocultarBuscador('barraFiltros'));
 }
 
 //*-----------------------
@@ -268,7 +269,6 @@ function guardarUsuario(usuario) {
 }
 
 function bienvenida(arrayUsuarios, usuario, contenedor) {
-    console.log(usuario);
     let usuarioEncontrado = arrayUsuarios.find(({ login }) => login.toLowerCase() === usuario.toLowerCase());
     if (usuarioEncontrado) {
         if (usuarioEncontrado.sexo == 'Femenino') {
@@ -395,7 +395,7 @@ function contenedorNuevoAlumno(arrayIngresado, contenedor) {
     `;
     let botonCargarNuevoAlumno = document.getElementById('botonCargarNuevoAlumno');
     botonCargarNuevoAlumno.addEventListener('click', () => nuevoAlumno(arrayIngresado, contenedor));
-    botonCargarNuevoAlumno.addEventListener('click', mostrarBuscador);
+    botonCargarNuevoAlumno.addEventListener('click', () => mostrarBuscador('barraFiltros'));
 }
 
 function nuevoAlumno(arrayIngresado, contenedor) {
@@ -470,7 +470,7 @@ function cargarNotas(arrayIngresado, arrayNotas, contenedor) {
 
     let botonCargarNotas = document.getElementById('botonCargarNota');
     botonCargarNotas.addEventListener('click', () => nuevaNota(arrayIngresado, inputLegajo, contenedor));
-    botonCargarNotas.addEventListener('click', mostrarBuscador);
+    botonCargarNotas.addEventListener('click', () => mostrarBuscador('barraFiltros'));
 }
 
 function nuevaNota(arrayIngresado, legajoBuscado, contenedor) {
@@ -604,12 +604,12 @@ function nuevaNota(arrayIngresado, legajoBuscado, contenedor) {
     listaAlumnos(arrayIngresado, contenedor);
 }
 
-function ocultarBuscador() {
-    let contenedorFiltros = document.getElementById('barraFiltros');
-    contenedorFiltros.classList.add('oculto');
+function ocultarBuscador(id) {
+    let contenedor = document.getElementById(id);
+    contenedor.classList.add('oculto');
 }
 
-function mostrarBuscador() {
-    let contenedorFiltros = document.getElementById('barraFiltros');
-    contenedorFiltros.classList.remove('oculto');
+function mostrarBuscador(id) {
+    let contenedor = document.getElementById(id);
+    contenedor.classList.remove('oculto');
 }
