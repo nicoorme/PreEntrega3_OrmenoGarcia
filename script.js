@@ -202,9 +202,10 @@ function ejecucionPrograma() {
     botonInicioUsuario.addEventListener('click', () => usuarioNavBar(usuarios, inputUsuario, contenedorNavBar));
 
     //TODO ----- BOTON INICIO CON USUARIO GUARDADO
-    // let usuarioGuardado = sessionStorage.getItem('usuarioSesion');
+    // let usuarioGuardado = localStorage.getItem('usuarioSesion');
     // let botonInicio = document.getElementById('botonInicio');
-    // botonInicio.addEventListener('click', () => bienvenida(usuarios, usuarioGuardado, contenedorNavBar));
+    // botonInicio.addEventListener('click', () => bienvenida(usuarios, usuarioGuardado, contenedorInfo));
+    // botonInicio.addEventListener('click', () => usuarioNavBar(usuarios, usuarioGuardado, contenedorNavBar));
 
     //*------------------------
     //* EJECUCION LISTADO
@@ -249,9 +250,9 @@ function ejecucionPrograma() {
     let botonCargarNotas = document.getElementById('botonCargarNotas');
 
     if (alumnosJSON) {
-        botonCargarNotas.addEventListener('click', () => cargarNota(alumnosJSON, notasPosibles, contenedorInfo));
+        botonCargarNotas.addEventListener('click', () => cargarNotas(alumnosJSON, notasPosibles, contenedorInfo));
     } else {
-        botonCargarNotas.addEventListener('click', () => cargarNota(alumnos, notasPosibles, contenedorInfo));
+        botonCargarNotas.addEventListener('click', () => cargarNotas(alumnos, notasPosibles, contenedorInfo));
     }
     botonCargarNotas.addEventListener('click', ocultarBuscador);
 }
@@ -268,7 +269,7 @@ ejecucionPrograma();
 //* INICIO
 //*-----------------------
 function bienvenida(arrayUsuarios, usuario, contenedor) {
-    sessionStorage.setItem('usuarioSesion', usuario.value);
+    localStorage.setItem('usuarioSesion', usuario.value);
 
     let usuarioEncontrado = arrayUsuarios.find(({ login }) => login.toLowerCase() === usuario.value.toLowerCase());
     if (usuarioEncontrado) {
@@ -414,10 +415,11 @@ function nuevoAlumno(arrayIngresado, contenedor) {
 
     localStorage.setItem('alumnosStorage', JSON.stringify(arrayIngresado));
 }
-//----------------------------------------------------------------------
-//* CARGAR NOTAS
 
-function cargarNota(arrayIngresado, arrayNotas, contenedor) {
+//*------------------------
+//* CARGAR NOTAS
+//*------------------------
+function cargarNotas(arrayIngresado, arrayNotas, contenedor) {
     contenedor.innerHTML = `
         <div class="datosNuevoAlumno">
         <select class="input" id="inputAlumnos"><option>Seleccioná un alumno</option></select>
