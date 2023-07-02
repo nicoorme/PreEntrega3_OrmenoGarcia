@@ -195,9 +195,9 @@ function ejecucionPrograma() {
 
     let notasPosibles = ['AUSENTE', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-    //*-----------------------
-    //* EJECUCION INICIO
-    //*-----------------------
+    //*------------------------
+    //* LOGIN
+    //*------------------------
     let inputUsuario = document.getElementById('inputUsuario');
     let contenedorNavBar = document.getElementById('contenedorNavBar');
     let contenedorInfo = document.getElementById('contenedorInfo');
@@ -206,15 +206,21 @@ function ejecucionPrograma() {
     botonInicioUsuario.addEventListener('click', () => bienvenida(usuarios, inputUsuario.value, contenedorInfo));
     botonInicioUsuario.addEventListener('click', () => usuarioNavBar(usuarios, inputUsuario.value, contenedorNavBar));
     botonInicioUsuario.addEventListener('click', () => guardarUsuario(inputUsuario.value));
-    botonInicioUsuario.addEventListener('click', () => mostrarBuscador('menuBotones'));
-    botonInicioUsuario.addEventListener('click', () => mostrarBuscador('nav'));
+    botonInicioUsuario.addEventListener('click', () => mostrarElemento('menuBotones'));
+    botonInicioUsuario.addEventListener('click', () => mostrarElemento('nav'));
+    botonInicioUsuario.addEventListener('click', () => activo('botonInicio', 'botonLista', 'botonNuevoAlumno', 'botonCargarNotas'));
 
+    //*------------------------
+    //* EJECUCION INICIO
+    //*------------------------
     let botonInicio = document.getElementById('botonInicio');
     botonInicio.addEventListener('click', () => inicio(usuarios, contenedorInfo));
+    botonInicio.addEventListener('click', () => ocultarElemento('barraFiltros'));
+    botonInicio.addEventListener('click', () => activo('botonInicio', 'botonLista', 'botonNuevoAlumno', 'botonCargarNotas'));
 
-    //*------------------------
-    //* EJECUCION LISTADO
-    //*------------------------
+    //*-------------------------
+    //* EJECUCION LISTA ALUMNOS
+    //*-------------------------
     let alumnosJSON = JSON.parse(localStorage.getItem('alumnosStorage'));
     let botonLista = document.getElementById('botonLista');
 
@@ -224,11 +230,12 @@ function ejecucionPrograma() {
         botonLista.addEventListener('click', () => listaAlumnos(alumnos, contenedorInfo));
     }
 
-    botonLista.addEventListener('click', () => mostrarBuscador('barraFiltros'));
+    botonLista.addEventListener('click', () => mostrarElemento('barraFiltros'));
+    botonLista.addEventListener('click', () => activo('botonLista', 'botonInicio', 'botonNuevoAlumno', 'botonCargarNotas'));
 
-    //*------------------------
+    //*-------------------------
     //* EJECUCION BUSCADOR
-    //*------------------------
+    //*-------------------------
     let buscador = document.getElementById('buscador');
     if (alumnosJSON) {
         buscador.addEventListener('input', () => filtrarYListar(alumnosJSON, buscador, contenedorInfo));
@@ -236,9 +243,9 @@ function ejecucionPrograma() {
         buscador.addEventListener('input', () => filtrarYListar(alumnos, buscador, contenedorInfo));
     }
 
-    //*------------------------
+    //*-------------------------
     //* EJECUCION NUEVO ALUMNO
-    //*------------------------
+    //*-------------------------
     let botonNuevoAlumno = document.getElementById('botonNuevoAlumno');
 
     if (alumnosJSON) {
@@ -246,11 +253,12 @@ function ejecucionPrograma() {
     } else {
         botonNuevoAlumno.addEventListener('click', () => contenedorNuevoAlumno(alumnos, contenedorInfo));
     }
-    botonNuevoAlumno.addEventListener('click', () => ocultarBuscador('barraFiltros'));
+    botonNuevoAlumno.addEventListener('click', () => ocultarElemento('barraFiltros'));
+    botonNuevoAlumno.addEventListener('click', () => activo('botonNuevoAlumno', 'botonLista', 'botonInicio', 'botonCargarNotas'));
 
-    //*------------------------
+    //*-------------------------
     //* EJECUCION CARGAR NOTAS
-    //*------------------------
+    //*-------------------------
 
     let botonCargarNotas = document.getElementById('botonCargarNotas');
 
@@ -259,12 +267,13 @@ function ejecucionPrograma() {
     } else {
         botonCargarNotas.addEventListener('click', () => cargarNotas(alumnos, notasPosibles, contenedorInfo));
     }
-    botonCargarNotas.addEventListener('click', () => ocultarBuscador('barraFiltros'));
+    botonCargarNotas.addEventListener('click', () => ocultarElemento('barraFiltros'));
+    botonCargarNotas.addEventListener('click', () => activo('botonCargarNotas', 'botonLista', 'botonInicio', 'botonNuevoAlumno'));
 }
 
-//*-----------------------
+//*------------------------
 //* INICIO
-//*-----------------------
+//*------------------------
 function guardarUsuario(usuario) {
     sessionStorage.setItem('usuarioGuardado', usuario);
 }
@@ -326,9 +335,9 @@ function inicio(arrayIngresado, contenedor) {
     bienvenida(arrayIngresado, usuarioGuardado, contenedor);
 }
 
-//*------------------------
-//* LISTADO
-//*------------------------
+//*-------------------------
+//* LISTA ALUMNOS
+//*-------------------------
 function listaAlumnos(array, contenedor) {
     contenedor.innerHTML = `
         <div class="contenedorLista">
@@ -368,9 +377,9 @@ function listaAlumnos(array, contenedor) {
     });
 }
 
-//*------------------------
+//*-------------------------
 //* BUSCADOR
-//*------------------------
+//*-------------------------
 function filtrarYListar(arrayIngresado, input, contenedor) {
     let alumnosFiltrados = arrayIngresado.filter(
         ({ legajo, nombre, apellido, estado }) =>
@@ -382,9 +391,9 @@ function filtrarYListar(arrayIngresado, input, contenedor) {
     listaAlumnos(alumnosFiltrados, contenedor);
 }
 
-//*------------------------
+//*-------------------------
 //* NUEVO ALUMNO
-//*------------------------
+//*-------------------------
 function contenedorNuevoAlumno(arrayIngresado, contenedor) {
     contenedor.innerHTML = `
         <div class="datosNuevoAlumno">
@@ -396,7 +405,7 @@ function contenedorNuevoAlumno(arrayIngresado, contenedor) {
     `;
     let botonCargarNuevoAlumno = document.getElementById('botonCargarNuevoAlumno');
     botonCargarNuevoAlumno.addEventListener('click', () => nuevoAlumno(arrayIngresado, contenedor));
-    botonCargarNuevoAlumno.addEventListener('click', () => mostrarBuscador('barraFiltros'));
+    botonCargarNuevoAlumno.addEventListener('click', () => mostrarElemento('barraFiltros'));
 }
 
 function nuevoAlumno(arrayIngresado, contenedor) {
@@ -420,9 +429,9 @@ function nuevoAlumno(arrayIngresado, contenedor) {
     localStorage.setItem('alumnosStorage', JSON.stringify(arrayIngresado));
 }
 
-//*------------------------
+//*-------------------------
 //* CARGAR NOTAS
-//*------------------------
+//*-------------------------
 function cargarNotas(arrayIngresado, arrayNotas, contenedor) {
     contenedor.innerHTML = `
         <div class="datosNuevoAlumno">
@@ -471,7 +480,7 @@ function cargarNotas(arrayIngresado, arrayNotas, contenedor) {
 
     let botonCargarNotas = document.getElementById('botonCargarNota');
     botonCargarNotas.addEventListener('click', () => nuevaNota(arrayIngresado, inputLegajo, contenedor));
-    botonCargarNotas.addEventListener('click', () => mostrarBuscador('barraFiltros'));
+    botonCargarNotas.addEventListener('click', () => mostrarElemento('barraFiltros'));
 }
 
 function nuevaNota(arrayIngresado, legajoBuscado, contenedor) {
@@ -605,12 +614,32 @@ function nuevaNota(arrayIngresado, legajoBuscado, contenedor) {
     listaAlumnos(arrayIngresado, contenedor);
 }
 
-function ocultarBuscador(id) {
+//*-------------------------
+//* MOSTRAR / OCULTAR
+//*-------------------------
+function ocultarElemento(id) {
     let contenedor = document.getElementById(id);
     contenedor.classList.add('oculto');
 }
 
-function mostrarBuscador(id) {
+function mostrarElemento(id) {
     let contenedor = document.getElementById(id);
     contenedor.classList.remove('oculto');
+}
+
+//*-------------------------
+//* ESTILO ACTIVO BOTONES
+//*-------------------------
+function activo(botonActivado, botonDesactivado1, botonDesactivado2, botonDesactivado3) {
+    let contenedor = document.getElementById(botonActivado);
+    contenedor.classList.add('activo');
+
+    let contenedor1 = document.getElementById(botonDesactivado1);
+    contenedor1.classList.remove('activo');
+
+    let contenedor2 = document.getElementById(botonDesactivado2);
+    contenedor2.classList.remove('activo');
+
+    let contenedor3 = document.getElementById(botonDesactivado3);
+    contenedor3.classList.remove('activo');
 }

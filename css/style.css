@@ -76,6 +76,17 @@ main {
     border-radius: 8px;
     color: #ffffff;
 }
+.botonMenu {
+    width: 80%;
+    padding: 8px 16px;
+    font-size: 12px;
+    background-color: #11111161;
+    border-radius: 8px;
+    color: #ffffff;
+}
+.activo {
+    background-color: #003366;
+}
 
 #contenedor {
     width: 100%;
@@ -139,8 +150,10 @@ main {
 
 #buscador {
     width: 500px;
-    height: 30px;
+    height: 35px;
     margin-top: 20px;
+    border-radius: 8px;
+    padding: 8px;
 }
 
 .cabecera {
@@ -206,11 +219,14 @@ main {
 
 .input {
     width: 300px;
-    height: 30px;
+    height: 35px;
+    border-radius: 8px;
+    padding: 8px;
+    color: #6c6c6c;
 }
 
 .botonCargar {
-    width: 250px;
+    width: 150px;
     padding: 8px 16px;
     font-size: 12px;
     background-color: #11111161;
@@ -220,11 +236,4 @@ main {
 
 .oculto {
     display: none;
-}
-
-.mostrar {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
 }
