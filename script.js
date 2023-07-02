@@ -1,3 +1,8 @@
+ejecucionPrograma();
+
+//*-----------------------
+//* PROGRAMA
+//*-----------------------
 function ejecucionPrograma() {
     //*-----------------------
     //* ARRAYS
@@ -202,7 +207,6 @@ function ejecucionPrograma() {
     botonInicioUsuario.addEventListener('click', () => usuarioNavBar(usuarios, inputUsuario.value, contenedorNavBar));
     botonInicioUsuario.addEventListener('click', () => guardarUsuario(inputUsuario.value));
 
-    //TODO ----- BOTON INICIO CON USUARIO GUARDADO
     let botonInicio = document.getElementById('botonInicio');
     botonInicio.addEventListener('click', () => inicio(usuarios, contenedorInfo));
 
@@ -255,14 +259,6 @@ function ejecucionPrograma() {
     }
     botonCargarNotas.addEventListener('click', ocultarBuscador);
 }
-
-//*-----------------------------------------
-//* ---------- EJECUCION PROGRAMA ----------
-//*-----------------------------------------
-ejecucionPrograma();
-//* ----------------------------------------
-//* ----------------------------------------
-//* ----------------------------------------
 
 //*-----------------------
 //* INICIO
