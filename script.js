@@ -198,14 +198,13 @@ function ejecucionPrograma() {
     let contenedorInfo = document.getElementById('contenedorInfo');
 
     let botonInicioUsuario = document.getElementById('botonInicioUsuario');
-    botonInicioUsuario.addEventListener('click', () => bienvenida(usuarios, inputUsuario, contenedorInfo));
-    botonInicioUsuario.addEventListener('click', () => usuarioNavBar(usuarios, inputUsuario, contenedorNavBar));
+    botonInicioUsuario.addEventListener('click', () => bienvenida(usuarios, inputUsuario.value, contenedorInfo));
+    botonInicioUsuario.addEventListener('click', () => usuarioNavBar(usuarios, inputUsuario.value, contenedorNavBar));
+    botonInicioUsuario.addEventListener('click', () => guardarUsuario(inputUsuario.value));
 
     //TODO ----- BOTON INICIO CON USUARIO GUARDADO
-    // let usuarioGuardado = localStorage.getItem('usuarioSesion');
-    // let botonInicio = document.getElementById('botonInicio');
-    // botonInicio.addEventListener('click', () => bienvenida(usuarios, usuarioGuardado, contenedorInfo));
-    // botonInicio.addEventListener('click', () => usuarioNavBar(usuarios, usuarioGuardado, contenedorNavBar));
+    let botonInicio = document.getElementById('botonInicio');
+    botonInicio.addEventListener('click', () => inicio(usuarios, contenedorInfo));
 
     //*------------------------
     //* EJECUCION LISTADO
@@ -268,33 +267,36 @@ ejecucionPrograma();
 //*-----------------------
 //* INICIO
 //*-----------------------
-function bienvenida(arrayUsuarios, usuario, contenedor) {
-    localStorage.setItem('usuarioSesion', usuario.value);
+function guardarUsuario(usuario) {
+    sessionStorage.setItem('usuarioGuardado', usuario);
+}
 
-    let usuarioEncontrado = arrayUsuarios.find(({ login }) => login.toLowerCase() === usuario.value.toLowerCase());
+function bienvenida(arrayUsuarios, usuario, contenedor) {
+    console.log(usuario);
+    let usuarioEncontrado = arrayUsuarios.find(({ login }) => login.toLowerCase() === usuario.toLowerCase());
     if (usuarioEncontrado) {
         if (usuarioEncontrado.sexo == 'Femenino') {
             contenedor.innerHTML = `
-                <h1 class="inicio">Bienvenida ${usuarioEncontrado.nombre}</h1>
-                `;
+                    <h1 class="inicio">Bienvenida ${usuarioEncontrado.nombre}</h1>
+                    `;
         } else {
             contenedor.innerHTML = `
-                <h1 class="inicio">Bienvenido ${usuarioEncontrado.nombre}</h1>
-                `;
+                    <h1 class="inicio">Bienvenido ${usuarioEncontrado.nombre}</h1>
+                    `;
         }
     } else if (!usuarioEncontrado) {
         contenedor.innerHTML = `
-            <h1 class="inicio">HOLA ${usuario.value.toUpperCase()}</h1>
-            `;
+                <h1 class="inicio">HOLA ${usuario.toUpperCase()}</h1>
+                `;
     } else if (inputUsuario.value == '') {
         contenedor.innerHTML = `
-            <h1 class="inicio">HOLA INVITADO</h1>
-            `;
+                <h1 class="inicio">HOLA INVITADO</h1>
+                `;
     }
 }
 
 function usuarioNavBar(arrayUsuarios, usuario, contenedor) {
-    let usuarioEncontrado = arrayUsuarios.find(({ login }) => login == usuario.value.toLowerCase());
+    let usuarioEncontrado = arrayUsuarios.find(({ login }) => login == usuario.toLowerCase());
     if (usuarioEncontrado) {
         contenedor.innerHTML = `
                 <img class="fotoUsuario" src="multimedia/img/${usuarioEncontrado.rutaImagen}" alt="">
@@ -320,6 +322,11 @@ function usuarioNavBar(arrayUsuarios, usuario, contenedor) {
         textoUsuario.innerText = `INVITADO`;
         legajoUsuario.innerText = `Legajo: -`;
     }
+}
+
+function inicio(arrayIngresado, contenedor) {
+    let usuarioGuardado = sessionStorage.getItem('usuarioGuardado');
+    bienvenida(arrayIngresado, usuarioGuardado, contenedor);
 }
 
 //*------------------------
