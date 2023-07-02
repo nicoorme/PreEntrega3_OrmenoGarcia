@@ -30,7 +30,7 @@ nav {
     font-size: 28px;
 }
 
-#usuario {
+#contenedorNavBar {
     height: 40px;
     width: auto;
     display: flex;
