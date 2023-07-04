@@ -224,11 +224,9 @@ function ejecucionPrograma() {
     let alumnosJSON = JSON.parse(localStorage.getItem('alumnosStorage'));
     let botonLista = document.getElementById('botonLista');
 
-    if (alumnosJSON) {
-        botonLista.addEventListener('click', () => listaAlumnos(alumnosJSON, contenedorInfo));
-    } else {
-        botonLista.addEventListener('click', () => listaAlumnos(alumnos, contenedorInfo));
-    }
+    alumnosJSON
+        ? botonLista.addEventListener('click', () => listaAlumnos(alumnosJSON, contenedorInfo))
+        : botonLista.addEventListener('click', () => listaAlumnos(alumnos, contenedorInfo));
 
     botonLista.addEventListener('click', () => mostrarElemento('barraFiltros'));
     botonLista.addEventListener('click', () => activo('botonLista', 'botonInicio', 'botonNuevoAlumno', 'botonCargarNotas'));
@@ -237,22 +235,19 @@ function ejecucionPrograma() {
     //* EJECUCION BUSCADOR
     //*-------------------------
     let buscador = document.getElementById('buscador');
-    if (alumnosJSON) {
-        buscador.addEventListener('input', () => filtrarYListar(alumnosJSON, buscador, contenedorInfo));
-    } else {
-        buscador.addEventListener('input', () => filtrarYListar(alumnos, buscador, contenedorInfo));
-    }
+    alumnosJSON
+        ? buscador.addEventListener('input', () => filtrarYListar(alumnosJSON, buscador, contenedorInfo))
+        : buscador.addEventListener('input', () => filtrarYListar(alumnos, buscador, contenedorInfo));
 
     //*-------------------------
     //* EJECUCION NUEVO ALUMNO
     //*-------------------------
     let botonNuevoAlumno = document.getElementById('botonNuevoAlumno');
 
-    if (alumnosJSON) {
-        botonNuevoAlumno.addEventListener('click', () => contenedorNuevoAlumno(alumnosJSON, contenedorInfo));
-    } else {
-        botonNuevoAlumno.addEventListener('click', () => contenedorNuevoAlumno(alumnos, contenedorInfo));
-    }
+    alumnosJSON
+        ? botonNuevoAlumno.addEventListener('click', () => contenedorNuevoAlumno(alumnosJSON, contenedorInfo))
+        : botonNuevoAlumno.addEventListener('click', () => contenedorNuevoAlumno(alumnos, contenedorInfo));
+
     botonNuevoAlumno.addEventListener('click', () => ocultarElemento('barraFiltros'));
     botonNuevoAlumno.addEventListener('click', () => activo('botonNuevoAlumno', 'botonLista', 'botonInicio', 'botonCargarNotas'));
 
@@ -262,11 +257,10 @@ function ejecucionPrograma() {
 
     let botonCargarNotas = document.getElementById('botonCargarNotas');
 
-    if (alumnosJSON) {
-        botonCargarNotas.addEventListener('click', () => cargarNotas(alumnosJSON, notasPosibles, contenedorInfo));
-    } else {
-        botonCargarNotas.addEventListener('click', () => cargarNotas(alumnos, notasPosibles, contenedorInfo));
-    }
+    alumnosJSON
+        ? botonCargarNotas.addEventListener('click', () => cargarNotas(alumnosJSON, notasPosibles, contenedorInfo))
+        : botonCargarNotas.addEventListener('click', () => cargarNotas(alumnos, notasPosibles, contenedorInfo));
+
     botonCargarNotas.addEventListener('click', () => ocultarElemento('barraFiltros'));
     botonCargarNotas.addEventListener('click', () => activo('botonCargarNotas', 'botonLista', 'botonInicio', 'botonNuevoAlumno'));
 }
@@ -281,15 +275,13 @@ function guardarUsuario(usuario) {
 function bienvenida(arrayUsuarios, usuario, contenedor) {
     let usuarioEncontrado = arrayUsuarios.find(({ login }) => login.toLowerCase() === usuario.toLowerCase());
     if (usuarioEncontrado) {
-        if (usuarioEncontrado.sexo == 'Femenino') {
-            contenedor.innerHTML = `
+        usuarioEncontrado.sexo == 'Femenino'
+            ? (contenedor.innerHTML = `
                     <h1 class="inicio">Bienvenida ${usuarioEncontrado.nombre}</h1>
-                    `;
-        } else {
-            contenedor.innerHTML = `
+                    `)
+            : (contenedor.innerHTML = `
                     <h1 class="inicio">Bienvenido ${usuarioEncontrado.nombre}</h1>
-                    `;
-        }
+                    `);
     } else if (!usuarioEncontrado) {
         contenedor.innerHTML = `
                 <h1 class="inicio">HOLA ${usuario.toUpperCase()}</h1>
@@ -561,32 +553,16 @@ function nuevaNota(arrayIngresado, legajoBuscado, contenedor) {
     alumnoNotas.segundoParcial = segundoParcial;
 
     let condicion1;
-    if (tp1 >= 7) {
-        condicion1 = 1;
-    } else {
-        condicion1 = 0;
-    }
+    tp1 >= 7 ? (condicion1 = 1) : (condicion1 = 0);
 
     let condicion2;
-    if (tp2 >= 7) {
-        condicion2 = 1;
-    } else {
-        condicion2 = 0;
-    }
+    tp2 >= 7 ? (condicion2 = 1) : (condicion2 = 0);
 
     let condicion3;
-    if (tp3 >= 7) {
-        condicion3 = 1;
-    } else {
-        condicion3 = 0;
-    }
+    tp3 >= 7 ? (condicion3 = 1) : (condicion3 = 0);
 
     let condicion4;
-    if (tp4 >= 7) {
-        condicion4 = 1;
-    } else {
-        condicion4 = 0;
-    }
+    tp4 >= 7 ? (condicion4 = 1) : (condicion4 = 0);
 
     let sumaTP = condicion1 + condicion2 + condicion3 + condicion4;
     let condicionTP;
@@ -607,6 +583,8 @@ function nuevaNota(arrayIngresado, legajoBuscado, contenedor) {
         alumnoNotas.estado = 'LIBRE';
     } else if (alumnoNotas.primerParcial == '-' || alumnoNotas.segundoParcial == '-') {
         alumnoNotas.estado = '-';
+    } else if (alumnoNotas.primerParcial == 'AUSENTE' || alumnoNotas.segundoParcial == 'AUSENTE') {
+        alumnoNotas.estado = 'LIBRE';
     } else {
         alumnoNotas.estado = 'REGULAR';
     }
