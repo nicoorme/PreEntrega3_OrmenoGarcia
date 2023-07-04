@@ -199,12 +199,11 @@ function ejecucionPrograma() {
     //* LOGIN
     //*------------------------
     let inputUsuario = document.getElementById('inputUsuario');
-    let contenedorNavBar = document.getElementById('contenedorNavBar');
     let contenedorInfo = document.getElementById('contenedorInfo');
 
     let botonInicioUsuario = document.getElementById('botonInicioUsuario');
     botonInicioUsuario.addEventListener('click', () => bienvenida(usuarios, inputUsuario.value, contenedorInfo));
-    botonInicioUsuario.addEventListener('click', () => usuarioNavBar(usuarios, inputUsuario.value, contenedorNavBar));
+    botonInicioUsuario.addEventListener('click', () => usuarioNavBar(usuarios, inputUsuario.value));
     botonInicioUsuario.addEventListener('click', () => guardarUsuario(inputUsuario.value));
     botonInicioUsuario.addEventListener('click', () => mostrarElemento('menuBotones'));
     botonInicioUsuario.addEventListener('click', () => mostrarElemento('nav'));
@@ -286,17 +285,18 @@ function bienvenida(arrayUsuarios, usuario, contenedor) {
         contenedor.innerHTML = `
                 <h1 class="inicio">HOLA ${usuario.toUpperCase()}</h1>
                 `;
-    } else if (inputUsuario.value == '') {
+    } else if (usuario == '') {
         contenedor.innerHTML = `
                 <h1 class="inicio">HOLA INVITADO</h1>
                 `;
     }
 }
 
-function usuarioNavBar(arrayUsuarios, usuario, contenedor) {
+function usuarioNavBar(arrayUsuarios, usuario) {
+    let contenedorNavBar = document.getElementById('contenedorNavBar');
     let usuarioEncontrado = arrayUsuarios.find(({ login }) => login == usuario.toLowerCase());
     if (usuarioEncontrado) {
-        contenedor.innerHTML = `
+        contenedorNavBar.innerHTML = `
                 <img class="fotoUsuario" src="multimedia/img/${usuarioEncontrado.rutaImagen}" alt="">
                 <div id="datosUsuario">
                 <p id="textoUsuario"></p>
@@ -308,7 +308,7 @@ function usuarioNavBar(arrayUsuarios, usuario, contenedor) {
         textoUsuario.innerText = `${usuarioEncontrado.nombre} ${usuarioEncontrado.apellido}`;
         legajoUsuario.innerText = `Legajo: ${usuarioEncontrado.legajo}`;
     } else if (!usuarioEncontrado) {
-        contenedor.innerHTML = `
+        contenedorNavBar.innerHTML = `
                         <img class="fotoUsuario" src="multimedia/img/invitado.jpeg" alt="">
                         <div id="datosUsuario">
                         <p id="textoUsuario"></p>
@@ -375,10 +375,10 @@ function listaAlumnos(array, contenedor) {
 function filtrarYListar(arrayIngresado, input, contenedor) {
     let alumnosFiltrados = arrayIngresado.filter(
         ({ legajo, nombre, apellido, estado }) =>
-            legajo.toString().includes(input.value) ||
-            nombre.toLowerCase().includes(input.value) ||
-            apellido.toLowerCase().includes(input.value) ||
-            estado.toLowerCase().includes(input.value)
+            legajo.toString().includes(input.value.toLowerCase()) ||
+            nombre.toLowerCase().includes(input.value.toLowerCase()) ||
+            apellido.toLowerCase().includes(input.value.toLowerCase()) ||
+            estado.toLowerCase().includes(input.value.toLowerCase())
     );
     listaAlumnos(alumnosFiltrados, contenedor);
 }
