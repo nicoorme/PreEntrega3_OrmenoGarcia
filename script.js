@@ -403,7 +403,9 @@ function contenedorNuevoAlumno(arrayIngresado, contenedor) {
 function nuevoAlumno(arrayIngresado, contenedor) {
     let legajoNuevo = arrayIngresado[arrayIngresado.length - 1].legajo;
     let nombre = document.getElementById('nombreNuevoAlumno').value;
+    nombre = capitalizarPalabras(nombre);
     let apellido = document.getElementById('apellidoNuevoAlumno').value;
+    apellido = capitalizarPalabras(apellido);
     let dni = document.getElementById('dniNuevoAlumno').value;
     let legajo = ++legajoNuevo;
     let tp1 = '-';
@@ -620,4 +622,11 @@ function activo(botonActivado, botonDesactivado1, botonDesactivado2, botonDesact
 
     let contenedor3 = document.getElementById(botonDesactivado3);
     contenedor3.classList.remove('activo');
+}
+
+//*-------------------------
+//* CAPITALIZAR PALABRAS
+//*-------------------------
+function capitalizarPalabras(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }
